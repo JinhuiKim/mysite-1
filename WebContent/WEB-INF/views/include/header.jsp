@@ -1,10 +1,8 @@
+<%@page import="kr.ac.sungkyul.mysite.vo.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
- 
- request.setCharacterEncoding("utf-8");
- String result = request.getParameter("r");
- 
+ UserVo authuser = (UserVo)session.getAttribute("authUser");
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -18,10 +16,10 @@
 		<div id="header">
 			<h1>MySite</h1>
 			<ul>
-			<%if("loginsuccess".equals(result)){ %>
-				<li><a href="">회원정보수정</a><li>
-				<li><a href="/mysite/main/index.jsp">로그아웃</a><li>
-				<li>님 안녕하세요 ^^;</li>
+			<%if(authuser != null){ %>
+				<li><a href="/mysite/user?a=modifyform">회원정보수정</a><li>
+				<li><a href="/mysite/user?a=logout">로그아웃</a><li>
+				<li><%=authuser.getName() %>님 안녕하세요 ^^;</li>
 				
 				<%}else{ %>
 				

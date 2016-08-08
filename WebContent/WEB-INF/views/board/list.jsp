@@ -1,10 +1,11 @@
+<%@page import="kr.ac.sungkyul.mysite.vo.UserVo"%>
 <%@page import="kr.ac.sungkyul.mysite.vo.BoardVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% 
 
-
+UserVo authuser = (UserVo)session.getAttribute("authUser");
 List<BoardVo> list = (List<BoardVo>)request.getAttribute("list"); %>
 
 <!DOCTYPE html>
@@ -21,8 +22,8 @@ List<BoardVo> list = (List<BoardVo>)request.getAttribute("list"); %>
 		<div id="content">
 			<div id="board">
 				<form id="search_form" action="" method="post">
-					<input type="text" id="kwd" name="kwd" value=""> <input
-						type="submit" value="찾기">
+					<input type="text" id="kwd" name="kwd" value=""><!--  나중에.. -->
+					 <input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
 					<tr>
@@ -42,34 +43,43 @@ List<BoardVo> list = (List<BoardVo>)request.getAttribute("list"); %>
 					
 					<tr>
 						<td><%=index-count++ %></td>
-						<td><a href=""><%=index-count++ %>번째 글입니다.</a></td>
-						<td><%=vo. %></td>
-						<td>3</td>
-						<td><%=vo.reg %></td>
-						<td><a href="" class="del">삭제</a></td>
+						<td><a href="/mysite/bs?a=view"><%=vo.getTitle() %></a></td>
+						<td><%=vo.getName() %></td>
+						<td><%=vo.getViewNo() %></td>
+						<td><%=vo.getRegDate() %></td>
+						
+						<td>
+							<% if(authuser != null && vo.getUserNo() == authuser.getNo()) %>
+								<a href="/mysite/bs?a=delete&no=<%=vo.getNo() %>" class="del">삭제</a>
+							<%} %>
+						</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td><a href="">두 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-02 12:04:12</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><a href="">첫 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-09-25 07:24:32</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
+					
+					
 				</table>
+						 
+ 				<!-- begin:paging --> 
+ 				<div class="pager"> 
+ 					<ul> 
+ 						<li><a href="">◀</a></li> 
+ 						<li><a href="">1</a></li> 
+ 						<li class="selected">2</li> 
+ 						<li><a href="">3</a></li> 
+ 						<li><a href="">4</a></li> 
+ 						<li><a href="">5</a></li> 
+ 						<li><a href="">▶</a></li> 
+ 					</ul> 
+ 				</div> 
+ 				<!-- end:paging --> 
+				
+				
 				<div class="bottom">
-					<a href="" id="new-book">글쓰기</a>
+					<a href="/mysite/bs?a=writeform" id="new-book">글쓰기</a>
 				</div>
 			</div>
 		</div>
+		
+		
 		<jsp:include page="/WEB-INF/views/include/navi.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	</div>

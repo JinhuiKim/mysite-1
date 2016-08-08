@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.ac.sungkyul.mysite.dao.UserDao;
 import kr.ac.sungkyul.mysite.vo.UserVo;
@@ -28,7 +29,10 @@ public class LoginAction implements Action {
 			return;//redirect 다음에 코드가있다면  무조건 리턴해서 끝내줘야함 
 		}
 	//로그인 처리 
-		WebUtil.redirect("/mysite/main?r=loginsuccess", request, response);
+		HttpSession session = request.getSession(true);
+		session.setAttribute("authUser", vo);
+		WebUtil.redirect("/mysite/main", request, response);
+
 	}
 
 }
