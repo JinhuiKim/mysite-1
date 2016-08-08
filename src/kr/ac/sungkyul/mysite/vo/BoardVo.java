@@ -59,11 +59,12 @@ public class BoardVo extends UserVo {
 	public void setDepth(Long depth) {
 		this.depth = depth;
 	}
-	@Override
-	public String toString() {
-		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", viewNo="
-				+ viewNo + ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", userName="
-				+ userName + "]";
+
+	public Long getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(Long userNo) {
+		this.userNo = userNo;
 	}
 	public String getUserName() {
 		return userName;
@@ -71,6 +72,13 @@ public class BoardVo extends UserVo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	@Override
+	public String toString() {
+		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", viewNo="
+				+ viewNo + ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", userName="
+				+ userName + ", userNo=" + userNo + "]";
+	}
+	
 
 	
 	

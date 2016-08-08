@@ -23,7 +23,7 @@ public class BoardDao {
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
 			stmt = connection.createStatement();
-			String sql ="select a.no, title, b.name, content, reg_date, view_count from board a, users b where a.user_no = b.no order by group_no DESC, order_no ASC";
+			String sql ="select a.no, title, b.name, content, reg_date, view_count, a.no from board a, users b where a.user_no = b.no order by group_no DESC, order_no ASC";
 
 			rs = stmt.executeQuery(sql);
 
@@ -35,7 +35,7 @@ public class BoardDao {
 				String content = rs.getString(4);
 				String regDate = rs.getString(5);
 				Long viewNo = rs.getLong(6);
-				
+				Long userNo = rs.getLong(6);
 				
 				BoardVo vo = new BoardVo();
 				vo.setNo(no);
@@ -44,7 +44,7 @@ public class BoardDao {
 				vo.setContent(content);
 				vo.setRegDate(regDate);
 				vo.setViewNo(viewNo);
-				
+				vo.setUserNo(userNo);
 				
 				list.add(vo);
 			}
