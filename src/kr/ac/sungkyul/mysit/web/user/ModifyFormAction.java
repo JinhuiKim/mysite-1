@@ -33,7 +33,7 @@ public class ModifyFormAction implements Action { //회원정보수정하는 창
 		UserDao dao = new UserDao();
 		
 		UserVo vo = dao.get(no);
-		request.setAttribute("uservo", vo);
+		request.setAttribute("userVo", vo);
 	
 		WebUtil.forward("/WEB-INF/views/user/modifyform.jsp", request, response);
 		

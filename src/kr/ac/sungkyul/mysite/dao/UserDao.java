@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpSession;
-
 import kr.ac.sungkyul.mysite.vo.UserVo;
-import kr.ac.sungkyul.web.WebUtil;
 
 public class UserDao {
 	

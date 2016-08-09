@@ -1,9 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%  request.setCharacterEncoding("utf-8");
-    String no = request.getParameter("no");
-    Long number1 = Long.parseLong(no);
-    
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!doctype html>
 <html>
 <head>
@@ -14,20 +12,20 @@
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<c:import url='/WEB-INF/views/include/header.jsp'/>
 		<div id="content">
 			<div id="guestbook" class="delete-form">
 				<form method="post" action="/mysite/gb?a=delete">
 					<input type="hidden" name="a" value="delete"> <input
-						type='hidden' name="no" value="<%=number1%>"> <label>비밀번호</label>
+						type='hidden' name="no" value="${param.no}"> <label>비밀번호</label>
 					<input type="password" name="password"> <input
 						type="submit" value="확인">
 				</form>
 				<a href="/mysite/gb?a=list">방명록 리스트</a>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/include/navi.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<c:import url='/WEB-INF/views/include/navi.jsp'/>
+		<c:import url='/WEB-INF/views/include/footer.jsp'/>
 	</div>
 </body>
 </html>

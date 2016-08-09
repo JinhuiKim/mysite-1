@@ -1,12 +1,11 @@
 <%@page import="kr.ac.sungkyul.mysite.vo.UserVo"%>
 <%@page import="kr.ac.sungkyul.mysite.vo.BoardVo"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<% 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-UserVo authuser = (UserVo)session.getAttribute("authUser");
-List<BoardVo> list = (List<BoardVo>)request.getAttribute("list"); %>
 
 <!DOCTYPE html>
 <html>
@@ -34,27 +33,23 @@ List<BoardVo> list = (List<BoardVo>)request.getAttribute("list"); %>
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>
-						<% 
-				int index = list.size();
-				int count= 0;
-				
-				for(BoardVo vo : list){
-				%>
+					
+				<c:forEach var ='vo' items='${list }' varStatus='s' >
 					
 					<tr>
-						<td><%=index-count++ %></td>
-						<td><a href="/mysite/bs?a=view"><%=vo.getTitle() %></a></td>
-						<td><%=vo.getName() %></td>
-						<td><%=vo.getViewNo() %></td>
-						<td><%=vo.getRegDate() %></td>
+						<td>[${fn:length(list) - s.index }]</td>
+						<td><a href="/mysite/bs?a=view&no=${vo.no }">${vo.title}</a></td>
+						<td>${vo.name}</td>
+						<td>${vo.viewNo}</td>
+						<td>${vo.regDate}</td>
 						
 						<td>
-							<% if(authuser != null && vo.getUserNo() == authuser.getNo()) %>
-								<a href="/mysite/bs?a=delete&no=<%=vo.getNo() %>" class="del">삭제</a>
-							<%} %>
+						<c:if test='${not empty authUser && (vo.userNo == authUser.no) }'>
+							<a href="/mysite/bs?a=delete&no=${vo.no}" class="del">삭제</a>
+						</c:if>
 						</td>
 					</tr>
-					
+					</c:forEach>
 					
 				</table>
 						 
@@ -71,17 +66,18 @@ List<BoardVo> list = (List<BoardVo>)request.getAttribute("list"); %>
  					</ul> 
  				</div> 
  				<!-- end:paging --> 
-				
-				
+				<c:if test='${not empty sessionScope.authUser }'>
+			
 				<div class="bottom">
 					<a href="/mysite/bs?a=writeform" id="new-book">글쓰기</a>
 				</div>
+				</c:if>
 			</div>
 		</div>
 		
 		
-		<jsp:include page="/WEB-INF/views/include/navi.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<c:import url='/WEB-INF/views/include/navi.jsp'/>
+		<c:import url='/WEB-INF/views/include/footer.jsp'/>
 	</div>
 </body>
 </html>

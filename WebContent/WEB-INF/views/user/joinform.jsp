@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%request.setCharacterEncoding("utf-8");
-String result = request.getParameter("r");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +12,7 @@ String result = request.getParameter("r");
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<c:import url='/WEB-INF/views/include/header.jsp'/>
 		<div id="content">
 			<div id="user">
 
@@ -45,8 +44,9 @@ String result = request.getParameter("r");
 				</form>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/include/navi.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<c:import url='/WEB-INF/views/include/navi.jsp'/>
+		<c:import url='/WEB-INF/views/include/footer.jsp'/>
+		
 	</div>
 </body>
 </html>
