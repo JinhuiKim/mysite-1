@@ -16,7 +16,14 @@
 		<c:import url='/WEB-INF/views/include/header.jsp'/>
 		<div id="content">
 			<div id="board">
+				<c:choose>
+				<c:when test='${boardVo.no !=null }'>
+				<form class="board-form" method="post" action="/mysite/bs?a=reply&no=${boardVo.no }">
+				</c:when>
+				<c:otherwise>
 				<form class="board-form" method="post" action="/mysite/bs?a=write">
+				</c:otherwise>
+				</c:choose>
 					<input type="hidden" name="a" value="write">
 					<table class="tbl-ex">
 						<tr>
@@ -32,7 +39,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/mysite/bs?a=list">취소</a> <input type="submit" value="등록">
+						<a href="/mysite/bs?a=list&no=1">취소</a> <input type="submit" value="등록">
 					</div>
 				</form>
 			</div>

@@ -30,7 +30,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/mysite/bs?a=list">취소</a> <input type="submit" value="수정">
+						<a href="javascript:history.go(-1);">취소</a> <input type="submit" value="수정">
 					</div>
 				</form>
 			</div>

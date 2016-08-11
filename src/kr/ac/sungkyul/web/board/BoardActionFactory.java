@@ -16,14 +16,20 @@ public class BoardActionFactory extends ActionFactory {
 		} else if ("view".equals(actionName)) {
 			action = new BoardViewAction();//게시물보기
 		} else if ("write".equals(actionName)) {
-			action = new BoardWriteAction();//게시물 입력
+			action = new BoardWriteAction();
 		} else if ("delete".equals(actionName)) {
 			action = new BoardDeleteAction();//게시물 삭제
 		}else if ("modifyform".equals(actionName)) {
 			action = new BoardModifyFormAction();//게시물 삭제
 		}else if ("writeform".equals(actionName)) {
 			action = new BoardWriteFormAction();//게시물 삭제
-		} else {
+		}else if ("reply".equals(actionName)) {
+			action = new BoardReplyAction();//게시물 삭제
+		}	else if ("replyform".equals(actionName)) {
+			action = new BoardReplyFormAction();//게시물 삭제
+		}
+		
+		else {
 			action = new BoardListAction();
 		}
 		return action;

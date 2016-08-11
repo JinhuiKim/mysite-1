@@ -13,8 +13,12 @@ public class BoardWriteFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		WebUtil.forward("/WEB-INF/views/board/write.jsp", request, response);
 
 	}
+
+
 
 }

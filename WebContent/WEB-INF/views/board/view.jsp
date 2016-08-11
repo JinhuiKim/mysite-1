@@ -33,7 +33,15 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="/mysite/bs?a=list">글목록</a> <a href="/mysite/bs?a=modifyform&no=${boardVo.no }">글수정</a>
+					<a href="/mysite/bs?a=list&no=1">글목록</a> 
+					<c:choose>
+					<c:when test='${not empty authUser && (boardVo.userNo == authUser.no) }'>
+					<a href="/mysite/bs?a=modifyform&no=${boardVo.no }">글수정</a>
+					</c:when>
+					<c:otherwise>
+					<a href="/mysite/bs?a=replyform&no=${boardVo.no }">답글쓰기</a>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>

@@ -17,13 +17,26 @@ public class BoardViewAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String no = request.getParameter("no");
+		if(no ==null || no.matches("-?\\d+(//.//d+)?")==false){//이상한일  방지
+			WebUtil.redirect("/mysite/bs", request, response);
+			return;
+		}
+		
+		
 		Long number = Long.parseLong(no);
 		
 		BoardDao dao = new BoardDao();
 		
 		BoardVo vo = dao.get(number);
+		
+		if(vo==null){//이상한일  방지
+			WebUtil.redirect("/mysite/bs", request, response);
+			return;
+		}
+		
 		dao.viewcount(vo);
 		request.setAttribute("boardVo", vo);
+
 				
 		WebUtil.forward("/WEB-INF/views/board/view.jsp", request, response);
 		

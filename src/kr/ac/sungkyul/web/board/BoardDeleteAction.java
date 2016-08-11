@@ -24,7 +24,7 @@ public class BoardDeleteAction implements Action {
 	    vo.setNo(rno);
 		
 		dao.delete(vo);
-		WebUtil.redirect("/mysite/bs?a=list", request, response);
+		WebUtil.redirect("/mysite/bs?a=list&no=1", request, response);
 	
 	}
 

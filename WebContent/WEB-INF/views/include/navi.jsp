@@ -11,7 +11,7 @@
 			<ul>
 				<li><a href="">주소연</a></li>
 				<li><a href="/mysite/gb?a=list">방명록</a></li>
-				<li><a href="/mysite/bs?a=list">게시판</a></li>
+				<li><a href="/mysite/bs?a=list&no=1">게시판</a></li>
 			</ul>
 		</div>
 		

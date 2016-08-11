@@ -13,11 +13,10 @@ import kr.ac.sungkyul.mysite.vo.UserVo;
 import kr.ac.sungkyul.web.Action;
 import kr.ac.sungkyul.web.WebUtil;
 
-public class BoardWriteAction implements Action {
+public class BoardReplyAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		if(session ==null){
 			WebUtil.redirect("/mysite/main", request, response);
@@ -28,20 +27,36 @@ public class BoardWriteAction implements Action {
 			WebUtil.redirect("mysite/main", request, response);
 			return;
 		}
-
+		
+		String no = request.getParameter("no");
 		String  title = request.getParameter("title");
 		String  content = request.getParameter("content");
-
-	
+		Long boardNo = Long.parseLong(no);
+		
+		System.out.println("qweqweqweqwe"+boardNo);
+		
 		if(title ==null && content ==null){
 			WebUtil.redirect("mysite/bs?a=writeform", request, response);
+		
 			return;
 		}
 		
 		BoardDao dao = new BoardDao();
 		BoardVo vo = new BoardVo();
+		System.out.println("boardNo"+boardNo);
+		BoardVo	parentVo = dao.get(boardNo);
 		
+		
+	System.out.println("parentVo.getGroupNo()"+parentVo.getGroupNo());
 
+	System.out.println("parentVo.getOrderNo()"+parentVo.getOrderNo());
+
+	System.out.println("parentVo.getDepth()"+parentVo.getDepth());
+	
+		vo.setGroupNo(parentVo.getGroupNo());
+		vo.setOrderNo(parentVo.getOrderNo());
+		vo.setDepth(parentVo.getDepth());
+	
 		vo.setUserNo(authUser.getNo());
 		vo.setTitle(title);
 		vo.setContent(content);
