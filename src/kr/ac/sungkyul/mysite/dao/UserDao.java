@@ -195,7 +195,7 @@ public class UserDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
-			String sql = "insert into Users values(seq_Users.nextval, ?, ?, ?, ?)";
+			String sql = "insert into Users values(seq_users.nextval, ?, ?, ?, ?)";
 
 			pstmt = connection.prepareStatement(sql);
 

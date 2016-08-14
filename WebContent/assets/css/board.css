@@ -6,7 +6,7 @@
 
 #search_form {
 	width:100%;
-	margin:50px auto 20px auto; 
+	margin:50px auto 20px auto;
 	text-align:center; 	 
 }
 
@@ -131,10 +131,14 @@ a.del	{
 	background:url("/mysite/assets/images/recycle.png") no-repeat 0 0;
 	font-size:0;
 }
+div.re	{
+	display:block;
+	width:20px;
+	height:20px; 
+	background:url("/mysite/assets/images/po.jpg") no-repeat 0 0;
+	font-size:20px;
+}
 
-/* 
-137 	게시판 리스트 페이징 
-138 */ 
  div.pager { 
  	width:100%; 
  	text-align:center; 
@@ -143,10 +147,11 @@ a.del	{
  	height:20px; 
  	margin:10px auto; 
  } 
- div.pager  ul li 			{ display:inline-block; margin:5px 0; width:20px ; font-weight:bold; } 
- div.pager  ul li.selected { text-decoration: underline; color:#f40808 } 
- div.pager  ul li a, 
- div.pager  ul li a:visited, 
- div.pager  ul li a:link, 
- div.pager  ul li a:active { text-decoration: none; color:#555 } 
- div.pager  ul li a:hover { text-decoration: none; color:#f00 } 
+div.pager  ul li 		  { display:inline-block; margin:5px 0; width:20px ; font-weight:bold; color:#ccc } 
+div.pager  ul li.selected { text-decoration: underline; color:#f40808 } 
+div.pager  ul li a, 
+div.pager  ul li a:visited, 
+div.pager  ul li a:link, 
+div.pager  ul li a:active { text-decoration: none; color:#555 } 
+div.pager  ul li a:hover { text-decoration: none; color:#f00 } 
+

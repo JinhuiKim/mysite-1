@@ -36,15 +36,14 @@
 						<th>&nbsp;</th>
 					</tr>
 
-					<c:forEach var='vo' items='${list }' varStatus='s'>
+								<c:forEach var='vo' items='${list }' varStatus='s'>				 
+ 						<tr> 
 
-						<tr>
 							<td>[${fn:length(list) - s.index }]</td>
-							<td style="text-align:left;padding-left:${(vo.depth-1)*10}px">
-							<c:if test='${vo.depth >1 }'>
-							<h3>→</h3>
-							<!--  <img src=""> -->
-							</c:if>
+					     <td style="text-align:left;padding-left:${(vo.depth-1)*10}px"> 
+						<c:if test='${vo.depth > 1 }'> 
+					<img src="/mysite/assets/images/po.jpg" style="width:20px; height:30px" >
+						 </c:if></td>
 							<td><a href="/mysite/bs?a=view&no=${vo.no }">${vo.title}</a></td>
 							<td>${vo.name}</td>
 							<td>${vo.viewNo}</td>

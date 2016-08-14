@@ -95,7 +95,7 @@ public class BoardDao {
 			 
 			String sql ="select a.no, title, b.name, content, reg_date, view_count, b.no as user_no from board a, users b where a.user_no = b.no ";
 			if(kwd!=null){
-				sql += " and title like '%"+kwd+"%' and content like '%"+kwd+"%' ";
+				sql += " and (title like '%"+kwd+"%' or content like '%"+kwd+"%') ";
 				
 			}
 				sql += " order by group_no DESC, order_no ASC ";
@@ -198,12 +198,12 @@ public class BoardDao {
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
 			
 			//String sql ="select a.no, title, b.name, content, reg_date, view_count, b.no from board a, users b where a.user_no = b.no order by group_no DESC, order_no ASC";
-			String sql = "select * from (select c.*, rownum as rn from ( select a.no, title, b.name, content, reg_date, view_count, b.no as user_no  from board a, users b where a.user_no = b.no ";
+			String sql = "select * from (select c.*, rownum as rn from ( select a.no, title, b.name, content, reg_date, view_count, b.no as user_no, a.depth  from board a, users b where a.user_no = b.no ";
 			
 			
 			
 			if(kwd!=null){
-			sql += "   and title like '%"+ kwd+ "%' and content like '%"+ kwd +"%' ";
+			sql += "   and (title like '%"+ kwd+ "%' or content like '%"+ kwd +"%') ";
 			
 			
 			}
@@ -228,7 +228,7 @@ public class BoardDao {
 				String regDate = rs.getString(5);
 				Long viewNo = rs.getLong(6);
 				Long userNo = rs.getLong(7);
-				
+				Long depth = rs.getLong(8);
 				
 				BoardVo vo = new BoardVo();
 				vo.setNo(no);
@@ -238,6 +238,7 @@ public class BoardDao {
 				vo.setRegDate(regDate);
 				vo.setViewNo(viewNo);
 				vo.setUserNo(userNo);
+				vo.setDepth(depth);
 				
 				list.add(vo);
 				
